@@ -13,33 +13,30 @@ def multi_replace(dir):
             file_path = os.path.join(root, fname)
 
             if fname != '.DS_Store':
-
-                f = Path(file_path).stem
+                file_no_ext = Path(file_path).stem
                 replacement_dict = {
-                    'Vehicle registration plate': f + '.jpg,plate',
+                    'Vehicle registration plate': file_no_ext + '.jpg,plate',
                     ' ': ','
                 }
 
                 # Open the file and replace words in the dic by iterating the through the dictionary
-                with open(file_path, "r+") as fin:
-                    data = fin.read()
+                with open(file_path, "r+") as f:
+                    data = f.read()
                     for _, key in enumerate(replacement_dict):
                         data = data.replace(key, replacement_dict[key])
 
                 # Write the new replaced data to the file
-                with open(file_path, "wt") as fin:
-                    fin.write(data)
+                with open(file_path, "wt") as f:
+                    f.write(data)
 
                 # Append an ',S' to the end of each line
                 newline = ''
                 with open(file_path, 'r') as f:
                     for line in f:
                         newline += line.strip()+",S\n"
-                    f.close()
 
                 with open(file_path, 'w') as f:
                     f.write(newline)
-                    f.close()
 
                 replace_S(file_path)
 
@@ -48,14 +45,13 @@ def replace_S(file_path):
     '''
     Replaces ',S' with with an int. Int will be the ID of each bounding box in an image
     '''
-    f = open(file_path, "r+")
-    lines = f.readlines()
-    for i, line in enumerate(lines):
-        lines[i] = line.replace(',S', ',' + str(i+1))
+    with open(file_path, "r+") as f:
+        lines = f.readlines()
+        for i, line in enumerate(lines):
+            lines[i] = line.replace(',S', ',' + str(i+1))
 
-    f = open(file_path, "w")
-    f.writelines(lines)
-    f.close()
+    with open(file_path, "w") as f:
+        f.writelines(lines)
 
 
 def combine_txts(dir):
@@ -74,8 +70,10 @@ def combine_txts(dir):
 
 
 if __name__ == '__main__':
+
+    # Replace with your dataset path
     labels_dir = os.path.dirname(
-        '/Users/tiagoramalho/Project-Rekognize/Dataset/Plate/Label/')
+        '/YOUR/DATASET/DIRECTORY')
 
     multi_replace(labels_dir)
     combine_txts(labels_dir)

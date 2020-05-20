@@ -1,8 +1,10 @@
 import os
 import turicreate as tc
 cwd = os.getcwd()
+
+# Replace with your dataset path
 IMAGES_DIR = os.path.dirname(
-    '/Users/tiagoramalho/Project-Rekognize/Dataset/Plate/')
+    '/YOUR/DATASET/DIRECTORY')
 # assumes CSV column format is image,id,name,xMin,xMax,yMin,yMax
 csv_path = cwd + '/bboxes.csv'
 
