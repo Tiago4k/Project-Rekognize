@@ -1,0 +1,15 @@
+# Virtual Environment
+rekognize-venv
+
+# Workspace Settings
+.vscode
+
+# Mac Files
+.DS_Store
+
+# Number Plate Dataset
+Dataset*
+
+# SFrame
+plate.sframe
+plate.sframe.zip
