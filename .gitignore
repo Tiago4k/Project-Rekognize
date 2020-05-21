@@ -12,5 +12,6 @@ Dataset*
 
 # SFrame
 *plate.sframe
-*plate.sframe.zip
+
+*.zip
 csvs
