@@ -11,5 +11,6 @@ rekognize-venv
 Dataset*
 
 # SFrame
-plate.sframe
-plate.sframe.zip
+*plate.sframe
+*plate.sframe.zip
+csvs
